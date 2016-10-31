@@ -5,9 +5,9 @@ from django.db import models
 class Event(models.Model):
 	team1 = models.TextField(max_length=100)
 	team2 = models.TextField(max_length=100)
-	win1 = models.TextField(max_length=5)
-	win2 = models.TextField(max_length=5)
-	draw = models.TextField(max_length=5)
+	win1 = models.TextField(max_length=15)
+	win2 = models.TextField(max_length=15)
+	draw = models.TextField(max_length=15)
 
 	#date
 

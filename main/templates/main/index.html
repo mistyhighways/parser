@@ -4,10 +4,19 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 	<title>{{ site_title }}</title> 
-</head>
-<body>
-Premier League (England)
-{{odds}} --------------- {{teams}}
+		<!--	CSS 	-->
+	<link href="{% static "css/main.css" %}" rel="stylesheet">
 
+</head>
+<body style>
+<h3> Premier League (England) </h3>
+
+<br/><br/>
+{% for event in events %}
+	{{event.team1}} vs {{event.team2}} <br/>
+	{{event.win1}} {{event.draw}} {{event.win2}} <br/><br/><br/>
+{%endfor%}
+{{odds|length}}<br>
+{{teams|length}}
 </body>
 </html>
