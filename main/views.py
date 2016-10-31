@@ -30,38 +30,91 @@ def index(request):
 	#soup = BeautifulSoup(r, 'html.parser')
 	driver = webdriver.PhantomJS()
 	#driver.get("https://sports.bwin.com/en/sports#sportId=4")
-	driver.get("https://sports.bwin.com/en/sports#leagueIds=46&sportId=4")
+	#driver.get("https://sports.bwin.com/en/sports#leagueIds=46&sportId=4") # Premier Liga
+	#driver.get("https://sports.bwin.com/en/sports#leagueIds=16108&sportId=4")  # La Liga
+	driver.get("https://sports.betway.com/#/soccer/england/premier-league") # Premier Liga
 	#elems = WebDriverWait(driver, 10).until(find)
 	
 #	with self.wait_for_page_load(timeout=10):
 
 	
-	teams = driver.find_elements_by_class_name("mb-option-button__option-name")
-	elems = driver.find_elements_by_class_name("mb-option-button__option-odds")
+	#elem_teams = driver.find_elements_by_class_name("mb-option-button__option-name")
+	#elem_odds = driver.find_elements_by_class_name("mb-option-button__option-odds")
+	elem_teams = driver.find_elements_by_class_name("event_name")
+	elem_odds = driver.find_elements_by_class_name("outcome_button")
+
 	# except StaleElementReferenceException: driver.implicitly_wait(10)
 	
 	odds = []
-	ts = []
+	teams = []
 	events = []
 
-	for el in elems: 
+	for el in elem_odds: 
 		odds.append(el.text)
-	for team in teams:
-		ts.append(team.text)
+	for team in elem_teams:
+		team1, team2 = team.text.split("-")
+		teams.append(team1)
+		teams.append(team2)
 
-	for i in range(len(teams)/3):
-		ev = Event()
-		ev.team1 = ts[i*3]
-		ev.team2 = ts[i*3+2]
-		ev.win1 = odds[i*3]
-		ev.draw = odds[i*3+1]
-		ev.win2 = odds[i*3+2]
-		events.append(ev)
+	for i in range(4):
+		event = Event()
+		event.team1 = teams[i*2]
+		event.team2 = teams[i*2+1]
+		event.win1 = odds[i*3]
+		event.draw = odds[i*3+1]
+		event.win2 = odds[i*3+2]
+		events.append(event)
 	context = {
 		#'soup': soup.find_all('form'),
 		'site_title': 'Odds aggregator',
 		'odds': odds,
-		'teams': ts,
+		'teams': teams,
+		'events': events,
+		}
+	return render(request, "main/index.html", context,)
+
+def index2(request):
+	#r = urllib.urlopen('https://sports.bwin.com/en/sports#sportId=4').read()
+	#soup = BeautifulSoup(r, 'html.parser')
+	driver = webdriver.PhantomJS()
+	#driver.get("https://sports.bwin.com/en/sports#sportId=4")
+	driver.get("https://sports.bwin.com/en/sports#leagueIds=46&sportId=4") # Premier Liga
+	#driver.get("https://sports.bwin.com/en/sports#leagueIds=16108&sportId=4")  # La Liga
+	
+	#elems = WebDriverWait(driver, 10).until(find)
+	
+#	with self.wait_for_page_load(timeout=10):
+
+	
+	elem_teams = driver.find_elements_by_class_name("mb-option-button__option-name")
+	elem_odds = driver.find_elements_by_class_name("mb-option-button__option-odds")
+	#elem_teams = driver.find_elements_by_class_name("event_name")
+	#elem_odds = driver.find_elements_by_class_name("outcome_button")
+
+	# except StaleElementReferenceException: driver.implicitly_wait(10)
+	
+	odds = []
+	teams = []
+	events = []
+
+	for el in elem_odds: 
+		odds.append(el.text)
+	for team in elem_teams:
+		teams.append(team.text)
+
+	for i in range(len(elem_teams)/3):
+		event = Event()
+		event.team1 = teams[i*3]
+		event.team2 = teams[i*3+2]
+		event.win1 = odds[i*3]
+		event.draw = odds[i*3+1]
+		event.win2 = odds[i*3+2]
+		events.append(event)
+	context = {
+		#'soup': soup.find_all('form'),
+		'site_title': 'Odds aggregator',
+		'odds': odds,
+		'teams': teams,
 		'events': events,
 		}
 	return render(request, "main/index.html", context,)
