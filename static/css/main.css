@@ -1,9 +1,31 @@
-body
-{
-	text-align: center;
+html {
+	margin: 0;
+	padding: 0;
+	background:#a7a09a;
+}
+body {
+	/*text-align: center;*/
 	font-size: 18px;
+	width: 900px;
+	margin: 0 auto;
+	
 }
 h3 {
 	font-size: 20px;
 	font-weight: 500px;
+	text-align: center;
+}
+.right, .left {
+	width: 400px;
+
+	/*text-align: left;*/
+}
+.right {
+	/*margin-right: 360px;*/
+	float: right;
+	
+}
+.left {
+	float: left;
+	border-right: 1px blue;
 }
