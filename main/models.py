@@ -10,6 +10,12 @@ class Event(models.Model):
 	draw = models.TextField(max_length=15)
 
 	#date
+	def __eq__(self, other):
+		if not isinstance(other, type(self)):
+			return False
+		return ((self.team1, self.team2) == (other.team1, other.team2))
 
 	def __str__(self):
 		return '%s - %s' % (self.team1, self.team2)
+
+# class Odds(models.Model):

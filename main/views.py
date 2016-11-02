@@ -76,6 +76,12 @@ def index(request):
 		event.draw = odds[i*3+1]
 		event.win2 = odds[i*3+2]
 		events2.append(event)
+	event3 = events[0]
+	for event in events:
+		if event == events2[3]:
+			event3 = event
+
+
 
 	context = {
 		'site_title': 'Odds aggregator',
@@ -83,6 +89,7 @@ def index(request):
 		'teams': teams,
 		'events': events,
 		'events2': events2,
+		'event3': event3,
 		# 'dates': dates,
 		# 'test': test,
 		}
