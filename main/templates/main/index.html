@@ -15,9 +15,9 @@
 		<br/><br/>
 		{% for event in events %}
 			{{event.team1}} vs {{event.team2}} <br/>
-			{{event.win1}} {{event.draw}} {{event.win2}} <br/><br/><br/>
+			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} <br/><br/><br/>
 		{%endfor%}
-		{{odds|length}}<br>
+		
 	</div>
 	<div class = "right">
 		<h3> BWin </h3>
@@ -26,7 +26,8 @@
 			{{event.team1}} vs {{event.team2}} <br/>
 			{{event.win1}} {{event.draw}} {{event.win2}} <br/><br/><br/>
 		{%endfor%}
-		{{teams|length}}{{event3}}
+		teams
+		{{event.odds}} {{teams}}
 	</div>
 
 </body>
