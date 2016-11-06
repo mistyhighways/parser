@@ -47,14 +47,14 @@ def t(team):
 		return "Leicester City"
 	if "Liverpool" in team:
 		return "Liverpool"
-	if "Manchester City" in team:
+	if "Manchester City" in team:	#/////////
 		return "Manchester City"
+	if "Manchester United" in team:	#/////////
+		return "Manchester United"
 	if "Middlesbrough" in team:
 		return "Middlesbrough"
 	if "Southampton" in team:
 		return "Southampton"
-	if "Sunderland" in team:
-		return "Sunderland"
 	if "Stoke" in team:
 		return "Stoke City"
 	if "Sunderland" in team:
@@ -166,6 +166,11 @@ class Ev():
 	def add_odds(self, od):
 		self.odds.append(od)
 
+	def __eq__(self, other):							# comparing class instances
+		if not isinstance(other, type(self)):
+			return False
+		return ((self.team1, self.team2) == (other.team1, other.team2))
+
 class Od():
 	def __init__(self, win1, win2, draw):
 		self.win1 = win1
@@ -174,6 +179,8 @@ class Od():
         #self.book = book
         
 	
+
+
 
 def index(request):
 	# driver = webdriver.PhantomJS()
@@ -216,17 +223,20 @@ def index(request):
 	# 	odds.append(el.text)
 	for team in elem_teams:
 		# teams.append(team.text)
-		teams.append(team)
+		teams.append(t(team))
 	# for i in range(len(elem_teams)/3):
 	for i in range(6):
-		event = Event()
+		event = Ev(teams[i*2], teams[i*2+1])
 		#event.team1 = teams[i*3]
 		#event.team2 = teams[i*3+2]
-		event.team1 = t(teams[i*2])
-		event.team2 = t(teams[i*2+1])
-		event.win1 = Decimal(odds[i*3])
-		event.draw = Decimal(odds[i*3+1])
-		event.win2 = Decimal(odds[i*3+2])
+		od = Od(Decimal(odds[i*3]), Decimal(odds[i*3+2]), Decimal(odds[i*3+1]))
+		for ev in events:
+			if ev == event:
+				ev.add_odds(od)
+		# else:
+		# 	event.add_odds(od)
+		# 	events.append(event)
+		event.add_odds(od)
 		events2.append(event)
 	for i in range(6):
 		if events[i] == events2[i]:
