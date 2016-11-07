@@ -6,7 +6,7 @@ html {
 body {
 	/*text-align: center;*/
 	font-size: 18px;
-	width: 900px;
+	width: 1200px;
 	margin: 0 auto;
 	
 }
@@ -15,8 +15,8 @@ h3 {
 	font-weight: 500px;
 	text-align: center;
 }
-.right, .left {
-	width: 400px;
+.right, .left, .center {
+	width: 320px;
 
 	/*text-align: left;*/
 }
@@ -25,7 +25,7 @@ h3 {
 	float: right;
 	
 }
-.left {
+.left, .center {
 	float: left;
 	border-right: 1px blue;
 }

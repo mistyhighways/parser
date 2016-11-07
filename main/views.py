@@ -47,9 +47,9 @@ def t(team):
 		return "Leicester City"
 	if "Liverpool" in team:
 		return "Liverpool"
-	if "Manchester City" in team:	#/////////
+	if "Manchester City" in team or "Man City" in team:	
 		return "Manchester City"
-	if "Manchester United" in team:	#/////////
+	if "Manchester United" in team or "Manchester Utd" in team:
 		return "Manchester United"
 	if "Middlesbrough" in team:
 		return "Middlesbrough"
@@ -65,7 +65,7 @@ def t(team):
 		return "Tottenham"
 	if "Watford" in team:
 		return "Watford"
-	if "West Bromwich" in team:
+	if "West Brom" in team:
 		return "West Bromwich Albion"
 	if "West Ham" in team:
 		return "West Ham United"		
@@ -73,7 +73,240 @@ def t(team):
 		
 def match_event():
 	return True
-def index1111(request):
+
+
+class Ev():
+	def __init__(self, team1, team2):
+		self.team1 = team1
+		self.team2 = team2
+		self.odds = []
+		self.time = None
+
+	def add_odds(self, od):
+		self.odds.append(od)
+
+	def __eq__(self, other):							# comparing class instances
+		if not isinstance(other, type(self)):
+			return False
+		return ((self.team1, self.team2) == (other.team1, other.team2))
+
+class Od():
+	def __init__(self, win1, win2, draw):
+		self.win1 = win1
+		self.win2 = win2
+		self.draw = draw
+        #self.book = book
+        
+def index(request):
+
+	driver = webdriver.PhantomJS()
+	driver.get("https://sports.betway.com/#/soccer/england/premier-league") #  BetWay
+	elem_teams = driver.find_elements_by_class_name("event_name")
+	elem_odds = driver.find_elements_by_class_name("outcome_button")
+	odds = []
+	teams = []
+	events = []
+
+	for team in elem_teams:
+		data = team.text.split(" - ")
+		if len(data) == 2:
+			team1, team2 = team.text.split(" - ", 2)
+
+		teams.append(t(team1))
+		teams.append(t(team2))	
+	for el in elem_odds:
+		odds.append(el.text)
+
+	for i in range(10):
+		event = Ev(teams[i*2],teams[i*2+1])
+		od = Od(Decimal(odds[i*3]), Decimal(odds[i*3+2]), Decimal(odds[i*3+1]))
+		event.add_odds(od)
+		events.append(event)
+
+	driver.get("https://sports.bwin.com/en/sports#leagueIds=46&sportId=4") #  BWin
+	elem_teams = driver.find_elements_by_class_name("mb-option-button__option-name")
+	elem_odds = driver.find_elements_by_class_name("mb-option-button__option-odds")	
+	odds = []
+	teams = []
+	events2 = []
+
+	for team in elem_teams:
+		teams.append(t(team.text))
+	for el in elem_odds: 
+		odds.append(el.text)
+
+	for i in range(len(elem_teams)/3):
+		event = Ev(teams[i*3], teams[i*3+2])
+
+		od = Od(Decimal(odds[i*3]), Decimal(odds[i*3+2]), Decimal(odds[i*3+1]))
+		for ev in events:
+			if ev == event:
+				ev.add_odds(od)
+		# else:
+		# 	event.add_odds(od)
+		# 	events.append(event)
+		event.add_odds(od)
+		events2.append(event)
+
+	
+	driver.get("https://www.marathonbet.com/en/betting/Football/England/Premier+League/?menu=21520") # Marathonbet
+	elem_teams = driver.find_elements_by_class_name('member-name')
+	elem_odds = driver.find_elements_by_class_name("price")	
+	odds = []
+	teams = []
+	events3 = []
+
+	for team in elem_teams:
+		teams.append(t(team.text))
+	for el in elem_odds: 
+		odds.append(el.text)
+
+	for i in range(len(elem_teams)/3):
+		event = Ev(teams[i*3], teams[i*3+2])
+		od = Od(odds[i*10], odds[i*10+2], odds[i*10+1])
+		for ev in events:
+			if ev == event:
+				ev.add_odds(od)
+
+		event.add_odds(od)
+		events3.append(event)
+	#driver.get("https://www.parimatch.com/en/sport/futbol/anglija-premer-liga")
+	
+	####!!!!!!!!!! ----- Marathonbet	
+	#driver.get("https://www.marathonbet.com/en/betting/Football/England/Premier+League/?menu=21520")
+	#event3 = driver.find_elements_by_class_name('name')
+	#############
+
+	
+	# driver.get("https://www.fonbet.com/bets/?locale=en#11918")
+	# event3 = driver.find_elements_by_class_name('eventNumber')
+	# teams = []
+	
+
+	
+	# for team in event3:
+	# 	teams.append(team.text)
+
+	context = {
+		'site_title': 'Odds aggregator',
+		'odds': odds,
+		'teams': teams,
+		'events': events,
+		'events2': events2,
+		'events3': events3,
+		# 'event3': len(event3),
+		# 'dates': dates,
+		# 'test': test,
+		}
+	return render(request, "main/index.html", context,)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def index_good(request):
+
+	driver = webdriver.PhantomJS()
+	driver.get("https://sports.betway.com/#/soccer/england/premier-league") #  BetWay
+	elem_teams = driver.find_elements_by_class_name("event_name")
+	elem_odds = driver.find_elements_by_class_name("outcome_button")
+	odds = []
+	teams = []
+	events = []
+
+	for team in elem_teams:
+		team1, team2 = team.text.split("-")
+		teams.append(t(team1))
+		teams.append(t(team2))	
+	for el in elem_odds:
+		odds.append(el.text)
+
+	for i in range(10):
+		event = Ev(teams[i*2],teams[i*2+1])
+		od = Od(Decimal(odds[i*3]), Decimal(odds[i*3+2]), Decimal(odds[i*3+1]))
+		event.add_odds(od)
+		events.append(event)
+
+	driver.get("https://sports.bwin.com/en/sports#leagueIds=46&sportId=4") #  BWin
+	elem_teams = driver.find_elements_by_class_name("mb-option-button__option-name")
+	elem_odds = driver.find_elements_by_class_name("mb-option-button__option-odds")	
+	odds = []
+	teams = []
+	events2 = []
+
+	for team in elem_teams:
+		teams.append(t(team.text))
+	for el in elem_odds: 
+		odds.append(el.text)
+
+	for i in range(len(elem_teams)/3):
+		event = Ev(teams[i*3], teams[i*3+2])
+
+		od = Od(Decimal(odds[i*3]), Decimal(odds[i*3+2]), Decimal(odds[i*3+1]))
+		for ev in events:
+			if ev == event:
+				ev.add_odds(od)
+		# else:
+		# 	event.add_odds(od)
+		# 	events.append(event)
+		event.add_odds(od)
+		events2.append(event)
+
+	
+	#driver.get("https://www.parimatch.com/en/sport/futbol/anglija-premer-liga")
+	
+	####!!!!!!!!!! ----- Marathonbet	
+	#driver.get("https://www.marathonbet.com/en/betting/Football/England/Premier+League/?menu=21520")
+	#event3 = driver.find_elements_by_class_name('member-name')
+	#############
+
+	
+	# driver.get("https://www.fonbet.com/bets/?locale=en#11918")
+	# event3 = driver.find_elements_by_class_name('eventNumber')
+	# teams = []
+	
+
+	
+	# for team in event3:
+	# 	teams.append(team.text)
+
+	context = {
+		'site_title': 'Odds aggregator',
+		'odds': odds,
+		'teams': teams,
+		'events': events,
+		'events2': events2,
+		# 'event3': len(event3),
+		# 'dates': dates,
+		# 'test': test,
+		}
+	return render(request, "main/index.html", context,)
+
+
+
+def index01(request):
 
 	driver = webdriver.PhantomJS()
 	driver.get("https://sports.betway.com/#/soccer/england/premier-league") #  BetWay
@@ -93,7 +326,7 @@ def index1111(request):
 		odds.append(el.text)
 
 	
-	for i in range(14):
+	for i in range(10):
 		event = Event()
 		event.team1 = teams[i*2]
 		event.team2 = teams[i*2+1]
@@ -157,32 +390,11 @@ def index1111(request):
 	return render(request, "main/index.html", context,)
 
 
-class Ev():
-	def __init__(self, team1, team2):
-		self.team1 = team1
-		self.team2 = team2
-		self.odds = []
-
-	def add_odds(self, od):
-		self.odds.append(od)
-
-	def __eq__(self, other):							# comparing class instances
-		if not isinstance(other, type(self)):
-			return False
-		return ((self.team1, self.team2) == (other.team1, other.team2))
-
-class Od():
-	def __init__(self, win1, win2, draw):
-		self.win1 = win1
-		self.win2 = win2
-		self.draw = draw
-        #self.book = book
-        
 	
 
 
 
-def index(request):
+def index0000(request):
 	# driver = webdriver.PhantomJS()
 	# driver.get("https://sports.betway.com/#/soccer/england/premier-league") #  BetWay
 	# elem_teams = driver.find_elements_by_class_name("event_name")
