@@ -15,10 +15,13 @@ h3 {
 	font-weight: 500px;
 	text-align: center;
 }
-.right, .left, .center {
+.right, .center {
 	width: 320px;
 
 	/*text-align: left;*/
+}
+.left {
+	width: 420px;
 }
 .right {
 	/*margin-right: 360px;*/

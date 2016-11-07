@@ -14,7 +14,7 @@
 		<h3> BetWay </h3>
 		<br/><br/>
 		{% for event in events %}
-			{{event.team1}} vs {{event.team2}} <br/>
+			{{event.time}} {{event.team1}} vs {{event.team2}} <br/>
 			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} <br/>
 			{{event.odds.1.win1}} {{event.odds.1.draw}} {{event.odds.1.win2}} <br/>
 			{{event.odds.2.win1}} {{event.odds.2.draw}} {{event.odds.2.win2}} <br/>
@@ -24,19 +24,19 @@
 	<div class = "center">
 		<h3> BWin </h3>
 		<br/><br/>
-		{% for event in events2 %}
+		{% for event in events4 %}
 			{{event.team1}} vs {{event.team2}} <br/>
-			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} <br/><br/><br/>
+			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} {{event.odds.0.o1x}} {{event.odds.0.o12}} {{event.odds.0.ox2}} <br/><br/><br/>
 		{%endfor%}
 		test
-		{{test}}
+		{{times}}
 	</div>
 	<div class = "right">
 		<h3> Marathonbet </h3>
 		<br/><br/>
 		{% for event in events3 %}
 			{{event.team1}} vs {{event.team2}} <br/>
-			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} <br/><br/><br/>
+			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} {{event.odds.0.o1x}} {{event.odds.0.o12}} {{event.odds.0.ox2}} <br/><br/><br/>
 		{%endfor%}
 		test
 		{{test}}
