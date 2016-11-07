@@ -6,7 +6,7 @@ html {
 body {
 	/*text-align: center;*/
 	font-size: 18px;
-	width: 1200px;
+	width: 1330px;
 	margin: 0 auto;
 	
 }
@@ -15,20 +15,20 @@ h3 {
 	font-weight: 500px;
 	text-align: center;
 }
-.right, .center {
-	width: 320px;
+.forth, .third, .second {
+	width: 280px;
 
 	/*text-align: left;*/
 }
-.left {
-	width: 420px;
+.first {
+	width: 400px;
 }
-.right {
+.forth {
 	/*margin-right: 360px;*/
 	float: right;
 	
 }
-.left, .center {
+.first, .second, .third {
 	float: left;
-	border-right: 1px blue;
+	/*border-right: 1px blue;*/
 }

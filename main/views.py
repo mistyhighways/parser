@@ -56,11 +56,11 @@ def t(team):
         return "Manchester City"
     if "Manchester United" in team or "Manchester Utd" in team or "Манчестер Ю" in team:
         return "Manchester United"
-    if "Middlesbrough" in team or "Манчестер Ю" in team:
+    if "Middlesbrough" in team or "длсбро" in team:
         return "Middlesbrough"
-    if "Southampton" in team or "Манчестер Ю" in team:
+    if "Southampton" in team or "Саутг" in team:
         return "Southampton"
-    if "Stoke" in team or "Манчестер Ю" in team:
+    if "Stoke" in team or "Сток" in team:
         return "Stoke City"
     if "Sunderland" in team or "Сандерл" in team:
         return "Sunderland"

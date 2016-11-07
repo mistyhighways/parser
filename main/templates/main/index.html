@@ -10,36 +10,47 @@
 </head>
 <body>
 	<h3> Premier League (England) </h3>
-	<div class = "left">
+	<div class = "first">
 		<h3> BetWay </h3>
 		<br/><br/>
 		{% for event in events %}
 			{{event.time}} {{event.team1}} vs {{event.team2}} <br/>
 			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} <br/>
 			{{event.odds.1.win1}} {{event.odds.1.draw}} {{event.odds.1.win2}} <br/>
-			{{event.odds.2.win1}} {{event.odds.2.draw}} {{event.odds.2.win2}} <br/>
+			{{event.odds.2.win1}} {{event.odds.2.draw}} {{event.odds.2.win2}} {{event.odds.2.o1x}} {{event.odds.2.o12}} {{event.odds.2.ox2}} <br/>
+			{{event.odds.3.win1}} {{event.odds.3.draw}} {{event.odds.3.win2}} {{event.odds.2.o1x}} {{event.odds.2.o12}} {{event.odds.2.ox2}} <br/>
 		{%endfor%}
 		
 	</div>
-	<div class = "center">
+	<div class = "second">
 		<h3> BWin </h3>
 		<br/><br/>
-		{% for event in events4 %}
+		{% for event in events2 %}
 			{{event.team1}} vs {{event.team2}} <br/>
-			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} {{event.odds.0.o1x}} {{event.odds.0.o12}} {{event.odds.0.ox2}} <br/><br/><br/>
+			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} <br/><br/><br/><br/>
 		{%endfor%}
 		test
 		{{times}}
 	</div>
-	<div class = "right">
+	<div class = "third">
 		<h3> Marathonbet </h3>
 		<br/><br/>
 		{% for event in events3 %}
 			{{event.team1}} vs {{event.team2}} <br/>
-			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} {{event.odds.0.o1x}} {{event.odds.0.o12}} {{event.odds.0.ox2}} <br/><br/><br/>
+			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} {{event.odds.0.o1x}} {{event.odds.0.o12}} {{event.odds.0.ox2}} <br/><br/><br/><br/>
 		{%endfor%}
 		test
 		{{test}}
+	</div>
+	<div class = "forth">
+		<h3> Olimp </h3>
+		<br/><br/>
+		{% for event in events4 %}
+			{{event.team1}} vs {{event.team2}} <br/>
+			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} {{event.odds.0.o1x}} {{event.odds.0.o12}} {{event.odds.0.ox2}} <br/><br/><br/><br/>
+		{%endfor%}
+		test
+		{{times}}
 	</div>
 
 </body>
