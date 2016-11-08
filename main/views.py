@@ -286,8 +286,8 @@ def index(request):
 
 
 
-def check(request):
-    event = request.session['Manchester United-Arsenal']#ev.team1 + '-' + ev.team2]
+def check(request, team1, team2):
+    event = request.session[team1 + '-' + team2]#ev.team1 + '-' + ev.team2]
     context = {
         'site_title': 'Odds aggregator',
         'event': event,
