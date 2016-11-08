@@ -83,12 +83,16 @@ class Ev():
         self.team2 = team2
         self.odds = []
         self.time = None
+        self.max_odds = None
 
     def add_odds(self, od):
         self.odds.append(od)
 
     def set_time(self, time):
         self.time = time
+
+    def set_max(self):
+        self.max_odds = max(bet.win1 for bet in self.odds)
 
     def __eq__(self, other):                            # comparing class instances
         if not isinstance(other, type(self)):
@@ -245,9 +249,12 @@ def index(request):
         for ev in events:
             if ev == event:
                 ev.add_odds(od)
+                ev.set_max()
                 ev.set_time(times[i])
+            request.session[ev.team1 + '-' + ev.team2] = ev
 
         event.add_odds(od)
+        
         events4.append(event)
     
     #for team in event4:
@@ -273,9 +280,19 @@ def index(request):
 
 
 
-def check(request):
 
-    return render(request, "main/check.html")
+
+
+
+
+
+def check(request):
+    event = request.session['Manchester United-Arsenal']#ev.team1 + '-' + ev.team2]
+    context = {
+        'site_title': 'Odds aggregator',
+        'event': event,
+        }
+    return render(request, "main/check.html", context,)
 
 
 
