@@ -14,11 +14,11 @@
 		<h3> BetWay </h3>
 		<br/><br/>
 		{% for event in events %}
-			{{event.time}} {{event.team1}} vs {{event.team2}} <br/>
+			<a href="{% url 'check' %}" >{{event.time}} {{event.team1}} vs {{event.team2}} </a><br/>
 			{{event.odds.0.win1}} {{event.odds.0.draw}} {{event.odds.0.win2}} <br/>
 			{{event.odds.1.win1}} {{event.odds.1.draw}} {{event.odds.1.win2}} <br/>
 			{{event.odds.2.win1}} {{event.odds.2.draw}} {{event.odds.2.win2}} {{event.odds.2.o1x}} {{event.odds.2.o12}} {{event.odds.2.ox2}} <br/>
-			{{event.odds.3.win1}} {{event.odds.3.draw}} {{event.odds.3.win2}} {{event.odds.2.o1x}} {{event.odds.2.o12}} {{event.odds.2.ox2}} <br/>
+			{{event.odds.3.win1}} {{event.odds.3.draw}} {{event.odds.3.win2}} {{event.odds.3.o1x}} {{event.odds.3.o12}} {{event.odds.3.ox2}} <br/>
 		{%endfor%}
 		
 	</div>

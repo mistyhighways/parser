@@ -1,24 +1,21 @@
 # -*- coding: utf-8 -*-
 import sys  
-
 reload(sys)  
 sys.setdefaultencoding('utf8')
 from django.shortcuts import render
-from main import models
-from models import Event
+#from main import models
+#from models import Event
 #from bs4 import BeautifulSoup
 from selenium import webdriver
-
-
 from contextlib import contextmanager
 from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support.expected_conditions import staleness_of
-
 from selenium.common.exceptions import StaleElementReferenceException
 
 import urllib
 
 from decimal import Decimal
+TWO_PLACES = Decimal("0.01")
 
 # @contextmanager
 # def wait_for_page_load(self, timeout=30):
@@ -100,18 +97,34 @@ class Ev():
 
 class Od():
     def __init__(self, win1, win2, draw, bookmaker):
-        self.win1 = win1
-        self.win2 = win2
-        self.draw = draw
+        if "Marathonbet" in bookmaker:
+            self.win1 = self.transform_to_decimal(win1)
+            self.draw = self.transform_to_decimal(draw)
+            self.win2 = self.transform_to_decimal(win2)
+        else:
+            self.win1 = Decimal(win1).quantize(TWO_PLACES)
+            self.win2 = Decimal(win2).quantize(TWO_PLACES)
+            self.draw = Decimal(draw).quantize(TWO_PLACES)
         self.o1x = None
         self.o12 = None
         self.ox2 = None
         self.bookmaker = bookmaker
 
     def set_other_odds(self, o1x, o12, ox2):
-        self.o1x = o1x
-        self.o12 = o12
-        self.ox2 = ox2
+        if "Marathonbet" in self.bookmaker:
+            self.o1x = self.transform_to_decimal(o1x)
+            self.o12 = self.transform_to_decimal(o12)
+            self.ox2 = self.transform_to_decimal(ox2)
+        else:
+            self.o1x = Decimal(o1x).quantize(TWO_PLACES)
+            self.o12 = Decimal(o12).quantize(TWO_PLACES)
+            self.ox2 = Decimal(ox2).quantize(TWO_PLACES)
+
+    def transform_to_decimal(self, var):
+        data = var.split("/")
+        if len(data) == 2:
+            one, two = var.split("/", 2)
+            return (Decimal(one)/Decimal(two) + 1).quantize(TWO_PLACES)
         
 def index(request):
 
@@ -135,7 +148,7 @@ def index(request):
 
     for i in range(10):
         event = Ev(teams[i*2],teams[i*2+1])
-        od = Od(Decimal(odds[i*3]), Decimal(odds[i*3+2]), Decimal(odds[i*3+1]), "BetWay")
+        od = Od(odds[i*3], odds[i*3+2], odds[i*3+1], "BetWay")
         event.add_odds(od)
         events.append(event)
 
@@ -154,7 +167,7 @@ def index(request):
     for i in range(len(elem_teams)/3):
         event = Ev(teams[i*3], teams[i*3+2])
 
-        od = Od(Decimal(odds[i*3]), Decimal(odds[i*3+2]), Decimal(odds[i*3+1]), "BWin")
+        od = Od(odds[i*3], odds[i*3+2], odds[i*3+1], "BWin")
         for ev in events:
             if ev == event:
                 ev.add_odds(od)
@@ -205,7 +218,7 @@ def index(request):
     # teams = []
     
 
-    driver.get("http://olimp.com/betting/index.php?page=line&action=2&sel[]=11664") # 1xBet
+    driver.get("http://olimp.com/betting/index.php?page=line&action=2&sel[]=11664") # Olimp
     elem_teams = driver.find_elements_by_class_name("m")
     elem_odds = driver.find_elements_by_class_name("bet_sel") 
     
@@ -260,9 +273,9 @@ def index(request):
 
 
 
+def check(request):
 
-
-
+    return render(request, "main/check.html")
 
 
 
