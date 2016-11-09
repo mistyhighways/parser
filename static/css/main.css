@@ -15,6 +15,10 @@ h3 {
 	font-weight: 500px;
 	text-align: center;
 }
+
+/*--- index.html ---*/
+
+
 .forth, .third, .second {
 	width: 280px;
 
@@ -33,3 +37,15 @@ h3 {
 	/*border-right: 1px blue;*/
 }
 
+/*--- check.html ---*/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}

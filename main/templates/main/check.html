@@ -3,13 +3,60 @@
 {% load staticfiles %}
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-	<title>{{ site_title }}</title> 
+	<title>{{event.team1}} - {{event.team2}}</title> 
 		<!--	CSS 	-->
 	<link href="{% static "css/main.css" %}" rel="stylesheet">
 
 </head>
 <body>
-	<h3> Premier League (England) </h3>
-	{{event.team1}}
+	<h3> {{event.team1}} - {{event.team2}} </h3>
+<table>
+	  <tr>
+	    <th>Event</th>
+	    <th>BetWay</th>
+	    <th>BWin</th>
+	    <th>Marathonbet</th>
+	    <th>Olimp</th>
+	  </tr>
+	  <tr>
+	    <td>{{event.team1}}</td>
+	    <td>{{event.odds.0.win1}}</td>
+	    <td>{{event.odds.1.win1}}</td>
+	    <td>{{event.odds.2.win1}}</td>
+	    <td>{{event.odds.3.win1}}</td>	    
+	  </tr>
+	  <tr>
+
+	  </tr>
+	  <tr>
+	    <td>Draw</td>
+	    <td>{{event.odds.0.draw}}</td>
+	    <td>{{event.odds.1.draw}}</td>
+	    <td>{{event.odds.2.draw}}</td>
+	    <td>{{event.odds.3.draw}}</td>
+	  </tr>
+	  <tr>
+	    <td>{{event.team2}}</td>
+	    <td>{{event.odds.0.win2}}</td>
+	    <td>{{event.odds.1.win2}}</td>
+	    <td>{{event.odds.2.win2}}</td>
+	    <td>{{event.odds.3.win2}}</td>
+	
+	  </tr>
+	  <tr>
+	  	<td>1X</td>
+	    <td>{{event.odds.0.o1x}}</td>
+	    <td>{{event.odds.1.o1x}}</td>
+	    <td>{{event.odds.2.o1x}}</td>
+	    <td>{{event.odds.3.o1x}}</td>
+	  </tr>
+	  <tr>
+	  	<td>12</td>
+	    <td>{{event.odds.0.o12}}</td>
+	    <td>{{event.odds.1.o12}}</td>
+	    <td>{{event.odds.2.o12}}</td>
+	    <td>{{event.odds.3.o12}}</td>  
+	  </tr>
+</table>
 </body>
 </html>
