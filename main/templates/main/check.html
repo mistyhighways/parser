@@ -9,10 +9,10 @@
 
 </head>
 <body>
-	<h3> {{event.team1}} - {{event.team2}} </h3>
+	<h3> {{event.time}}&nbsp&nbsp {{event.team1}} - {{event.team2}} </h3>
 <table>
 	  <tr>
-	    <th>Event</th>
+	    <th>Bet</th>
 	    <th>BetWay</th>
 	    <th>BWin</th>
 	    <th>Marathonbet</th>
@@ -20,42 +20,66 @@
 	  </tr>
 	  <tr>
 	    <td>{{event.team1}}</td>
-	    <td>{{event.odds.0.win1}}</td>
-	    <td>{{event.odds.1.win1}}</td>
-	    <td>{{event.odds.2.win1}}</td>
-	    <td>{{event.odds.3.win1}}</td>	    
+	    {% for odds in event.odds %}
+	    	{% if odds.win1 == event.max_odds.0 %}
+	    		<td class=red>{{odds.win1}}</td>
+	    	{% else %}
+	    		<td>{{odds.win1}}</td>
+	    	{% endif %}
+	    {% endfor %}
 	  </tr>
 	  <tr>
 
 	  </tr>
 	  <tr>
 	    <td>Draw</td>
-	    <td>{{event.odds.0.draw}}</td>
-	    <td>{{event.odds.1.draw}}</td>
-	    <td>{{event.odds.2.draw}}</td>
-	    <td>{{event.odds.3.draw}}</td>
+	    {% for odds in event.odds %}
+	    	{% if odds.draw == event.max_odds.1 %}
+	    		<td class=red>{{odds.draw}}</td>
+	    	{% else %}
+	    		<td>{{odds.draw}}</td>
+	    	{% endif %}
+		{% endfor %}
 	  </tr>
 	  <tr>
 	    <td>{{event.team2}}</td>
-	    <td>{{event.odds.0.win2}}</td>
-	    <td>{{event.odds.1.win2}}</td>
-	    <td>{{event.odds.2.win2}}</td>
-	    <td>{{event.odds.3.win2}}</td>
-	
+	    {% for odds in event.odds %}
+	    	{% if odds.win2 == event.max_odds.2 %}
+	    		<td class=red>{{odds.win2}}</td>
+	    	{% else %}
+	    		<td>{{odds.win2}}</td>
+	    	{% endif %}
+	    {% endfor %}	
 	  </tr>
 	  <tr>
 	  	<td>1X</td>
-	    <td>{{event.odds.0.o1x}}</td>
-	    <td>{{event.odds.1.o1x}}</td>
-	    <td>{{event.odds.2.o1x}}</td>
-	    <td>{{event.odds.3.o1x}}</td>
+	   	{% for odds in event.odds %}
+	    	{% if odds.o1x == event.max_odds.3 %}
+	    		<td class=red>{{odds.o1x}}</td>
+	    	{% else %}
+	    		<td>{{odds.o1x}}</td>
+	    	{% endif %}
+	    {% endfor %}
 	  </tr>
 	  <tr>
 	  	<td>12</td>
-	    <td>{{event.odds.0.o12}}</td>
-	    <td>{{event.odds.1.o12}}</td>
-	    <td>{{event.odds.2.o12}}</td>
-	    <td>{{event.odds.3.o12}}</td>  
+	   	{% for odds in event.odds %}
+	    	{% if odds.o12 == event.max_odds.4 %}
+	    		<td class=red>{{odds.o12}}</td>
+	    	{% else %}
+	    		<td>{{odds.o12}}</td>
+	    	{% endif %}
+	    {% endfor %}
+	  </tr>
+	  <tr>
+	  	<td>X2</td>
+	   	{% for odds in event.odds %}
+	    	{% if odds.ox2 == event.max_odds.5 %}
+	    		<td class=red>{{odds.ox2}}</td>
+	    	{% else %}
+	    		<td>{{odds.ox2}}</td>
+	    	{% endif %}
+	    {% endfor %}
 	  </tr>
 </table>
 </body>

@@ -72,9 +72,6 @@ def t(team):
     if "West Ham" in team or "Вест Хэм" in team:
         return "West Ham United"        
     return team
-        
-def match_event():
-    return True
 
 
 class Ev():
@@ -83,7 +80,7 @@ class Ev():
         self.team2 = team2
         self.odds = []
         self.time = None
-        self.max_odds = None
+        self.max_odds = []
 
     def add_odds(self, od):
         self.odds.append(od)
@@ -92,7 +89,12 @@ class Ev():
         self.time = time
 
     def set_max(self):
-        self.max_odds = max(bet.win1 for bet in self.odds)
+        self.max_odds.append(max(bet.win1 for bet in self.odds))
+        self.max_odds.append(max(bet.draw for bet in self.odds))
+        self.max_odds.append(max(bet.win2 for bet in self.odds))
+        self.max_odds.append(max(bet.o1x for bet in self.odds))
+        self.max_odds.append(max(bet.o12 for bet in self.odds))
+        self.max_odds.append(max(bet.ox2 for bet in self.odds))
 
     def __eq__(self, other):                            # comparing class instances
         if not isinstance(other, type(self)):
@@ -131,7 +133,6 @@ class Od():
             return (Decimal(one)/Decimal(two) + 1).quantize(TWO_PLACES)
         
 def index(request):
-
     driver = webdriver.PhantomJS()
     driver.get("https://sports.betway.com/#/soccer/england/premier-league")             #  BetWay
     elem_teams = driver.find_elements_by_class_name("event_name")
