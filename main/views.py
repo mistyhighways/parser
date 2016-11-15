@@ -133,6 +133,167 @@ class Od():
             return (Decimal(one)/Decimal(two) + 1).quantize(TWO_PLACES)
         
 def index(request):
+    #driver = webdriver.PhantomJS()
+    # driver.get("https://sports.betway.com/#/soccer/england/premier-league")             #  BetWay
+    # elem_teams = driver.find_elements_by_class_name("event_name")
+    # elem_odds = driver.find_elements_by_class_name("outcome_button")
+    odds = []
+    teams = []
+    events = []
+
+    # for team in elem_teams:
+    #     data = team.text.split(" - ")
+    #     if len(data) == 2:
+    #         team1, team2 = team.text.split(" - ", 2)
+
+    #     teams.append(t(team1))
+    #     teams.append(t(team2))
+    teams = ['Manchester United', 'Arsenal', 'Crystal Palace', 'Manchester City', 'Everton', 'Swansea City', 'Southampton', 'Liverpool', 'Chelsea', 'Tottenham', 'Crystal Palace', 'Manchester United', 'Everton', 'Leicester', 'Southampton', 'Stoke City', 'Burnley', 'Arsenal', 'Everton', 'Manchester City', 'West Ham', 'Swansea City', 'Southampton', 'Burnley']
+    odds = ['1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34']
+    # for el in elem_odds:
+    #     odds.append(el.text)
+
+    for i in range(10):
+        event = Ev(teams[i*2],teams[i*2+1])
+        od = Od(odds[i*3], odds[i*3+2], odds[i*3+1], "BetWay")
+        event.add_odds(od)
+        events.append(event)
+
+    #driver.get("https://sports.bwin.com/en/sports#leagueIds=46&sportId=4")                  #  BWin
+    # elem_teams = driver.find_elements_by_class_name("mb-option-button__option-name")
+    # elem_odds = driver.find_elements_by_class_name("mb-option-button__option-odds") 
+    # odds = []
+    # teams = []
+    # events2 = []
+
+    # for team in elem_teams:
+    #     teams.append(t(team.text))
+    # for el in elem_odds: 
+    #     odds.append(el.text)
+
+    teams = ['Manchester United', 'Arsenal', 'Crystal Palace', 'Manchester City', 'Everton', 'Swansea City', 'Southampton', 'Liverpool', 'Chelsea', 'Tottenham', 'Crystal Palace', 'Manchester United', 'Everton', 'Leicester', 'Southampton', 'Stoke City', 'Burnley', 'Arsenal', 'Everton', 'Manchester City', 'West Ham', 'Swansea City', 'Southampton', 'Burnley']
+    odds = ['1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34']
+
+    for i in range(10):
+        event = Ev(teams[i*2], teams[i*2+1])
+
+        od = Od('3.56', '5.31', '1.15', "BWin")
+        for ev in events:
+            if ev == event:
+                ev.add_odds(od)
+        # else:
+        #   event.add_odds(od)
+        #   events.append(event)
+        event.add_odds(od)
+
+
+    
+    # driver.get("https://www.marathonbet.com/en/betting/Football/England/Premier+League/?menu=21520") # Marathonbet
+    # elem_teams = driver.find_elements_by_class_name('member-name')
+    # elem_odds = driver.find_elements_by_class_name("price") 
+    # elem_times = driver.find_elements_by_class_name("date") 
+    # odds = []
+    # teams = []
+    times = ['19 Nov 12:30', '19 Nov 15:00', '19 Nov 15:00', '20 Nov 12:30', '20 Nov 12:30', '20 Nov 12:30', '20 Nov 15:00', '20 Nov 16:00', '21 Nov 12:30', '21 Nov 12:30', '22 Nov 14:30']
+    teams = ['Manchester United', 'Arsenal', 'Crystal Palace', 'Manchester City', 'Everton', 'Swansea City', 'Southampton', 'Liverpool', 'Chelsea', 'Tottenham', 'Crystal Palace', 'Manchester United', 'Everton', 'Leicester', 'Southampton', 'Stoke City', 'Burnley', 'Arsenal', 'Everton', 'Manchester City', 'West Ham', 'Swansea City', 'Southampton', 'Burnley']
+    odds = ['1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34']
+    
+
+    # for team in elem_teams:
+    #     teams.append(t(team.text))
+    # for el in elem_odds: 
+    #     odds.append(el.text)
+    # for time in elem_times: 
+    #     times.append(time.text)
+
+    for i in range(10):
+        event = Ev(teams[i*2], teams[i*2+1])
+        od = Od('48/13', '4/23', '29/13', "Marathonbet")
+        od.set_other_odds('14/18', '7/41', '39/15')
+        for ev in events:
+            if ev == event:
+                ev.add_odds(od)
+                ev.set_time(times[i])
+    # i = 0
+    # for ev in events:
+    #     od = Od('48/13', '4/23', '29/13', "Marathonbet")
+    #     od.set_other_odds('14/18', '7/41', '39/15')
+    #     ev.add_odds(od)
+    #     ev.set_time('Nov 19')
+        
+
+        #event.add_odds(od)
+        
+    #driver.get("https://www.parimatch.com/en/sport/futbol/anglija-premer-liga")
+        
+    # driver.get("https://www.fonbet.com/bets/?locale=en#11918")
+    # event3 = driver.find_elements_by_class_name('eventNumber')
+    # teams = []
+    
+    # driver.get("http://olimp.com/betting/index.php?page=line&action=2&sel[]=11664") # Olimp
+    # elem_teams = driver.find_elements_by_class_name("m")
+    # elem_odds = driver.find_elements_by_class_name("bet_sel") 
+    
+    # odds = []
+    # teams = []
+    
+    # events4 = []
+
+    teams = ['Manchester United', 'Arsenal', 'Crystal Palace', 'Manchester City', 'Everton', 'Swansea City', 'Southampton', 'Liverpool', 'Chelsea', 'Tottenham', 'Crystal Palace', 'Manchester United', 'Everton', 'Leicester', 'Southampton', 'Stoke City', 'Burnley', 'Arsenal', 'Everton', 'Manchester City', 'West Ham', 'Swansea City', 'Southampton', 'Burnley']
+    odds = ['1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34', '1.02', '2.12', '3.32', '1.51', '2.53', '3.56', '1.05', '2.34']
+
+    # for team in elem_teams:
+    #     data = team.text.split(" - ")
+    #     if len(data) == 2:
+    #         team1, team2 = team.text.split(" - ", 2)
+
+    #     teams.append(t(team1))
+    #     teams.append(t(team2))  
+    # for el in elem_odds: 
+    #     odds.append(el.text)
+
+
+    for i in range(10):
+        event = Ev(teams[i*2], teams[i*2+1])
+        od = Od(odds[i*3], odds[i*3+2], odds[i*3+1], "Olimp")
+        od.set_other_odds('1.25', '2.17', '5.42')
+        for ev in events:
+            if ev == event:
+                ev.add_odds(od)
+                ev.set_max()
+                ev.set_time(times[i])
+            request.session[ev.team1 + '-' + ev.team2] = ev
+
+        #event.add_odds(od)
+        
+        # events4.append(event)
+
+
+    context = {
+        'site_title': 'Odds aggregator',
+        # 'odds': odds,
+        # 'teams': teams,
+        'events': events,
+        # 'times': times,
+        # 'event3': len(event3),
+        # 'dates': dates,
+        # 'test': test,
+        }
+    return render(request, "main/index.html", context,)
+
+
+
+
+
+
+
+
+
+
+
+
+
+def index_good(request):
     driver = webdriver.PhantomJS()
     driver.get("https://sports.betway.com/#/soccer/england/premier-league")             #  BetWay
     elem_teams = driver.find_elements_by_class_name("event_name")
@@ -211,18 +372,11 @@ def index(request):
         event.add_odds(od)
         events3.append(event)
     #driver.get("https://www.parimatch.com/en/sport/futbol/anglija-premer-liga")
-    
-    ####!!!!!!!!!! ----- Marathonbet    
-    #driver.get("https://www.marathonbet.com/en/betting/Football/England/Premier+League/?menu=21520")
-    #event3 = driver.find_elements_by_class_name('name')
-    #############
-
-    
+        
     # driver.get("https://www.fonbet.com/bets/?locale=en#11918")
     # event3 = driver.find_elements_by_class_name('eventNumber')
     # teams = []
     
-
     driver.get("http://olimp.com/betting/index.php?page=line&action=2&sel[]=11664") # Olimp
     elem_teams = driver.find_elements_by_class_name("m")
     elem_odds = driver.find_elements_by_class_name("bet_sel") 
@@ -257,9 +411,7 @@ def index(request):
         event.add_odds(od)
         
         events4.append(event)
-    
-    #for team in event4:
-    #  teams.append(team.text)
+
 
     context = {
         'site_title': 'Odds aggregator',
@@ -275,15 +427,6 @@ def index(request):
         # 'test': test,
         }
     return render(request, "main/index.html", context,)
-
-
-
-
-
-
-
-
-
 
 
 
