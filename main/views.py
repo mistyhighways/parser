@@ -2,6 +2,7 @@
 import sys  
 reload(sys)  
 sys.setdefaultencoding('utf8')
+
 from django.shortcuts import render
 #from main import models
 #from models import Event

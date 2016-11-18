@@ -1,15 +1,16 @@
 html {
 	margin: 0;
 	padding: 0;
-	background:#a7a09a;
+	/*background:#a7a09a;*/
 	background: #ececec;
+	text-decoration: none;
 }
 body {
 	/*text-align: center;*/
 	font-size: 18px;
-	width: 70%;
+	width: 90%;
 	margin: 0 auto;
-	background: #fff;
+	background: #eee;
 	padding: 0;
 	
 }
@@ -28,9 +29,41 @@ h3 {
 	padding: 0;
 }
 
+a:link, a:visited {
+    /*background-color: #f44336;*/
+    /*border: 1px green;*/
+    /*color: white;*/
+    /*padding: 14px 25px;*/
+    /*text-align: center; */
+    text-decoration: none;
+    color: black;
+    font-weight: 300px;
+    /*display: inline-block;*/
+}
+
+a:hover, a:active {
+    /*background-color: red;*/
+    text-decoration: none;
+}
+
 /*--- index.html ---*/
 
 .top-bar {
+
+}
+
+.event {
+	/*border-bottom: 1px solid rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0px rgba(255,255,255,0.5);*/
+	width: 100%;
+	height: 50px;
+	/*background: green;*/
+}
+.after {
+	width: 100%;
+	height: 20px;
+		border-bottom: 1px solid rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0px rgba(255,255,255,0.5);
 
 }
 
