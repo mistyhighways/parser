@@ -383,6 +383,7 @@ def index(request):
 
         event.add_odds(od)
         events3.append(event)
+        
     #driver.get("https://www.parimatch.com/en/sport/futbol/anglija-premer-liga")
         
     # driver.get("https://www.fonbet.com/bets/?locale=en#11918")
