@@ -81,6 +81,7 @@ class Ev():
         self.team2 = team2
         self.odds = []
         self.time = None
+        self.arbitrage = "No arbitrage"
         self.max_odds = []
 
     def add_odds(self, od):
@@ -96,6 +97,15 @@ class Ev():
         self.max_odds.append(max(bet.o1x for bet in self.odds))
         self.max_odds.append(max(bet.o12 for bet in self.odds))
         self.max_odds.append(max(bet.ox2 for bet in self.odds))
+
+    def find_arbitrage(self):
+        for bet in self.odds:
+            for other_bet in self.odds:
+                if other_bet.o12 == None:
+                    continue
+                if (1/bet.draw + 1/other_bet.o12 < 1) or (1/bet.win1 + 1/other_bet.ox2 < 1) or (1/bet.win2 + 1/other_bet.o1x < 1):
+                    self.arbitrage = "Arbitrage found!"
+        #return False
 
     def __eq__(self, other):                            # comparing class instances
         if not isinstance(other, type(self)):
@@ -133,7 +143,7 @@ class Od():
             one, two = var.split("/", 2)
             return (Decimal(one)/Decimal(two) + 1).quantize(TWO_PLACES)
         
-def index(request):
+def index_old(request):
     #driver = webdriver.PhantomJS()
     # driver.get("https://sports.betway.com/#/soccer/england/premier-league")             #  BetWay
     # elem_teams = driver.find_elements_by_class_name("event_name")
@@ -178,7 +188,7 @@ def index(request):
     for i in range(10):
         event = Ev(teams[i*2], teams[i*2+1])
 
-        od = Od('3.56', '5.31', '1.15', "BWin")
+        od = Od('3.56', '5.31', '2.15', "BWin")
         for ev in events:
             if ev == event:
                 ev.add_odds(od)
@@ -263,6 +273,7 @@ def index(request):
                 ev.add_odds(od)
                 ev.set_max()
                 ev.set_time(times[i])
+                ev.find_arbitrage()
             request.session[ev.team1 + '-' + ev.team2] = ev
 
         #event.add_odds(od)
@@ -294,7 +305,7 @@ def index(request):
 
 
 
-def index_good(request):
+def index(request):
     driver = webdriver.PhantomJS()
     driver.get("https://sports.betway.com/#/soccer/england/premier-league")             #  BetWay
     elem_teams = driver.find_elements_by_class_name("event_name")

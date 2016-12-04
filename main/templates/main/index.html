@@ -10,18 +10,20 @@
 </head>
 <body>
 <div class="wrap">
-	<h3> Premier League (England) </h3>
+	<div class="header"><h3> Premier League (England) </h3></div>
 	
 		
 		<br/><br/>
-		{% for event in events %}
-		<div class="event">
-			<a href="{% url 'check' event.team1 event.team2%}" >{{event.time}} {{event.team1}} vs {{event.team2}} </a><br/>
-			{{event.max_odds.0}} {{event.max_odds.1}} {{event.max_odds.2}}  <br/>
-		<div>
-		<div class="after"></div>
-		{%endfor%}
-		
+		<div class="events">
+			{% for event in events %}
+			<div class="event">
+				<a href="{% url 'check' event.team1 event.team2%}" >{{event.time}} {{event.arbitrage}}
+				{{event.team1}} vs {{event.team2}} </a><br/>
+				{{event.max_odds.0}} {{event.max_odds.1}} {{event.max_odds.2}}  <br/>
+			</div>
+			<div class="after"></div>
+			{%endfor%}
+		</div>
 	
 </div>
 </body>

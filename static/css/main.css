@@ -11,6 +11,7 @@ body {
 	width: 90%;
 	margin: 0 auto;
 	background: #eee;
+	/*background: #444;*/
 	padding: 0;
 	
 }
@@ -25,8 +26,9 @@ h3 {
 	/*background: #ddd;*/
 	width: 100%;
 	height: 100%;
-		margin: 0;
+		margin: 0 auto;
 	padding: 0;
+	text-align: center;
 }
 
 a:link, a:visited {
@@ -48,13 +50,21 @@ a:hover, a:active {
 
 /*--- index.html ---*/
 
-.top-bar {
-
+.header {
+	width: 600px;
+			margin: 0 auto;
+	padding: 0;
 }
-
+.events {
+	width: 600px;
+	margin: 0 auto;
+	padding: 0;
+	/*background: #eee;*/
+}
 .event {
 	/*border-bottom: 1px solid rgba(0,0,0,0.2);
 	box-shadow: 0 1px 0px rgba(255,255,255,0.5);*/
+	margin-top: 30px;
 	width: 100%;
 	height: 50px;
 	/*background: green;*/
