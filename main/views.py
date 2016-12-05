@@ -143,7 +143,7 @@ class Od():
             one, two = var.split("/", 2)
             return (Decimal(one)/Decimal(two) + 1).quantize(TWO_PLACES)
         
-def index_old(request):
+def index(request):
     #driver = webdriver.PhantomJS()
     # driver.get("https://sports.betway.com/#/soccer/england/premier-league")             #  BetWay
     # elem_teams = driver.find_elements_by_class_name("event_name")
@@ -305,7 +305,7 @@ def index_old(request):
 
 
 
-def index(request):
+def index_good(request):
     driver = webdriver.PhantomJS()
     driver.get("https://sports.betway.com/#/soccer/england/premier-league")             #  BetWay
     elem_teams = driver.find_elements_by_class_name("event_name")
@@ -383,7 +383,7 @@ def index(request):
 
         event.add_odds(od)
         events3.append(event)
-        
+
     #driver.get("https://www.parimatch.com/en/sport/futbol/anglija-premer-liga")
         
     # driver.get("https://www.fonbet.com/bets/?locale=en#11918")
