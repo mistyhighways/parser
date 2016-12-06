@@ -50,8 +50,12 @@ a:hover, a:active {
 
 /*--- index.html ---*/
 
-.header, .footer {
+.header {
 	width: 600px;
+	color: #777;
+	/*text-shadow: 0 -1px 0 #888;*/
+	text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4);
+	letter-spacing: 2px;
 	margin: 0 auto;
 	margin-top: 30px;
 	padding: 0;
@@ -61,26 +65,62 @@ a:hover, a:active {
 
 	font-size: 14px;
 }
+.footer {
+	width: 600px;
+	color: #777;
+	/*text-shadow: 0 -1px 0 #888;*/
+	text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4);
+	letter-spacing: 2px;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 10px
+	padding: 0;
+	/*padding-bottom: 10px;*/
+
+	height: 20px;
+
+	font-size: 14px;
+
+
+}
 
 .events {
-	width: 600px;
+	width: 700px;
 	margin: 0 auto;
 	padding: 0;
 	/*background: #eee;*/
 }
+.time {
+	/*margin-top: 30px;*/
+	height: 90px;
+	width: 15%;
+	float: left;
+	font-size: 14px;
+	line-height: 90px;
+	/*background-color: red;*/
+}
 .event {
 	/*border-bottom: 1px solid rgba(0,0,0,0.2);
 	box-shadow: 0 1px 0px rgba(255,255,255,0.5);*/
-	margin-top: 30px;
-	width: 100%;
-	height: 50px;
+	/*padding-top: 20px;*/
+	width: 70%;
+	height: 90px;
+	float: left;
 	/*background: green;*/
+}
+.arbitrage {
+	width: 15%;
+	height: 90px;
+	float: right;
+	line-height: 90px;
+	font-size: 14px;
 }
 .after {
 	width: 100%;
-	height: 20px;
+	height: 90px;
 		border-bottom: 1px solid rgba(0,0,0,0.2);
 	box-shadow: 0 1px 0px rgba(255,255,255,0.5);
+	/*background-color: white;*/
 
 }
 
@@ -107,19 +147,59 @@ a:hover, a:active {
 
 /*--- check.html ---*/
 
+.big {
+	font-size: 20px;
+	letter-spacing: 1px;
+}
+.main-header {
+	letter-spacing: 5px;
+	color: #999;
+
+}
 table {
     border-collapse: collapse;
-    width: 800px;
+    width: 700px;
+    margin: 0 auto;
 }
 
 th, td {
     padding: 8px;
     /*width: 160px;*/
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
-
+th {
+	width: 100px;
+}
+td {
+	width: 100px;
+	height: 40px;
+}
+.left {
+	text-align: left;
+}
 .red {
 	color: red;
 	font-weight: 600px;
+}
+.back {
+
+	width: 70px;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+.my-button {							
+	-webkit-border-radius: 7;
+	-moz-border-radius: 7;
+	font-size: 16px;
+	border-radius: 18px;
+	padding: 10px;
+	border: 1px solid #444;
+	color: black;
+	letter-spacing: 5px;
+	cursor: pointer;
+}
+.my-button:hover {					
+	border: 1px solid blue;
+	color: blue;
 }

@@ -9,79 +9,84 @@
 
 </head>
 <body>
-	<h3> {{event.time}}&nbsp&nbsp {{event.team1}} - {{event.team2}} </h3>
-<table>
-	  <tr>
-	    <th>Bet</th>
-	    <th>BetWay</th>
-	    <th>BWin</th>
-	    <th>Marathonbet</th>
-	    <th>Olimp</th>
-	  </tr>
-	  <tr>
-	    <td>{{event.team1}}</td>
-	    {% for odds in event.odds %}
-	    	{% if odds.win1 == event.max_odds.0 %}
-	    		<td class=red>{{odds.win1}}</td>
-	    	{% else %}
-	    		<td>{{odds.win1}}</td>
-	    	{% endif %}
-	    {% endfor %}
-	  </tr>
-	  <tr>
+	<br/><h3 class="header big"> {{event.team1}} - {{event.team2}} ({{event.arbitrage}})</h3>
 
-	  </tr>
-	  <tr>
-	    <td>Draw</td>
-	    {% for odds in event.odds %}
-	    	{% if odds.draw == event.max_odds.1 %}
-	    		<td class=red>{{odds.draw}}</td>
-	    	{% else %}
-	    		<td>{{odds.draw}}</td>
-	    	{% endif %}
-		{% endfor %}
-	  </tr>
-	  <tr>
-	    <td>{{event.team2}}</td>
-	    {% for odds in event.odds %}
-	    	{% if odds.win2 == event.max_odds.2 %}
-	    		<td class=red>{{odds.win2}}</td>
-	    	{% else %}
-	    		<td>{{odds.win2}}</td>
-	    	{% endif %}
-	    {% endfor %}	
-	  </tr>
-	  <tr>
-	  	<td>1X</td>
-	   	{% for odds in event.odds %}
-	    	{% if odds.o1x == event.max_odds.3 %}
-	    		<td class=red>{{odds.o1x}}</td>
-	    	{% else %}
-	    		<td>{{odds.o1x}}</td>
-	    	{% endif %}
-	    {% endfor %}
-	  </tr>
-	  <tr>
-	  	<td>12</td>
-	   	{% for odds in event.odds %}
-	    	{% if odds.o12 == event.max_odds.4 %}
-	    		<td class=red>{{odds.o12}}</td>
-	    	{% else %}
-	    		<td>{{odds.o12}}</td>
-	    	{% endif %}
-	    {% endfor %}
-	  </tr>
-	  <tr>
-	  	<td>X2</td>
-	   	{% for odds in event.odds %}
-	    	{% if odds.ox2 == event.max_odds.5 %}
-	    		<td class=red>{{odds.ox2}}</td>
-	    	{% else %}
-	    		<td>{{odds.ox2}}</td>
-	    	{% endif %}
-	    {% endfor %}
-	    {{event.odds.3.win1}}
-	  </tr>
-</table>
+	<table>
+		  <tr class = "header">
+		    <th class="left">Bet</th>
+		    <th>BetWay</th>
+		    <th>BWin</th>
+		    <th>Marathonbet</th>
+		    <th>Olimp</th>
+		  </tr>
+		  <tr>
+		    <td class="left">{{event.team1}}</td>
+		    {% for odds in event.odds %}
+		    	{% if odds.win1 == event.max_odds.0 %}
+		    		<td class=red>{{odds.win1}}</td>
+		    	{% else %}
+		    		<td>{{odds.win1}}</td>
+		    	{% endif %}
+		    {% endfor %}
+		  </tr>
+		  <tr>
+
+		  </tr>
+		  <tr>
+		    <td class="left">Draw</td>
+		    {% for odds in event.odds %}
+		    	{% if odds.draw == event.max_odds.1 %}
+		    		<td class=red>{{odds.draw}}</td>
+		    	{% else %}
+		    		<td>{{odds.draw}}</td>
+		    	{% endif %}
+			{% endfor %}
+		  </tr>
+		  <tr>
+		    <td class="left">{{event.team2}}</td>
+		    {% for odds in event.odds %}
+		    	{% if odds.win2 == event.max_odds.2 %}
+		    		<td class=red>{{odds.win2}}</td>
+		    	{% else %}
+		    		<td>{{odds.win2}}</td>
+		    	{% endif %}
+		    {% endfor %}	
+		  </tr>
+		  <tr>
+		  	<td class="left">1X</td>
+		   	{% for odds in event.odds %}
+		    	{% if odds.o1x == event.max_odds.3 %}
+		    		<td class=red>{{odds.o1x}}</td>
+		    	{% else %}
+		    		<td>{{odds.o1x}}</td>
+		    	{% endif %}
+		    {% endfor %}
+		  </tr>
+		  <tr>
+		  	<td class="left">12</td>
+		   	{% for odds in event.odds %}
+		    	{% if odds.o12 == event.max_odds.4 %}
+		    		<td class=red>{{odds.o12}}</td>
+		    	{% else %}
+		    		<td>{{odds.o12}}</td>
+		    	{% endif %}
+		    {% endfor %}
+		  </tr>
+		  <tr>
+		  	<td class="left">X2</td>
+		   	{% for odds in event.odds %}
+		    	{% if odds.ox2 == event.max_odds.5 %}
+		    		<td class=red>{{odds.ox2}}</td>
+		    	{% else %}
+		    		<td>{{odds.ox2}}</td>
+		    	{% endif %}
+		    {% endfor %}
+		  </tr>
+	</table>
+	<div class="back header big">
+		<a href="javascript:history.back()">
+			<span class="my-button">&#8592;Back</span>
+		</a>
+	</div>
 </body>
 </html>
